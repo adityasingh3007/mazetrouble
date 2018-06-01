@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Maze Trouble</title>
+<link rel="stylesheet" href="./main.css">
+</head>
+<body onLoad="">
+	<div>
+		<div class="welcome_screen_container" id="welcome_screen_container" style="display:">
+			<div class="welcome_screen">
+				<div class="welcome_screen_header" id="welcome_header">
+					Welcome to <b style="color:#1589FF">Maze Trouble</b>
+				</div>
+				<hr>
+				<div class="user_input_panel" id="user_input_panel">
+					<div class="error" id="error_container" style="display:none">
+					Palyer name can't be left blank. <br>Please try again!!
+					</div>
+					<div class="text_box_container">
+						<div class="ui_caption" id="input_caption" style="height:0px">
+						Name:
+						</div>
+						<input type="text" class="uitext" autofocus="on" id="ui_text" placeholder="Player Name" oninput="user_input(this.id);" value="">
+					</div>
+					<div class="button_container">
+						<input type="submit" class="uibutton" value="Submit" id="" onclick="submit_game_data();">
+					</div>
+				</div>
+				<center>
+				<div id="loading" style="display:none">
+						<img src="./loading_icon.gif" style="width:70%">
+				</div>
+				</center>
+				
+			</div>
+		</div>
+		
+		<div class="game_container" id="game_container" style="display:none">
+			<div class="canvas_container" >
+				<canvas id="game_canvas">
+					Your Browser doesnt support Canvas.
+				</canvas>
+			</div>
+			<div id="options_container">
+				<table cellspacing="10">
+					<tr>
+						<td style="width:70%;padding-left:20px">
+						Playing as: <b><span id="player_name_cont" style="margin-left:10px;color:grey;"></span></b>
+						</td>
+						<td style="width:30%;text-align:center;">
+							<input type="button" value="PAUSE" id="play_pause_restart" onClick="takeaction(this.value);">
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+<script src="./canvas.js"></script>
+</body>
+</html>
