@@ -137,7 +137,7 @@ function add_text(text) {
 			ctx.fillText("Your final score is "+score.value,game_area.canvas.width/2,game_area.canvas.height/2+50);
 			ctx.fillStyle = "#fff";
 			ctx.font="15px CodeBold";
-			ctx.fillText("Press 'RESATART' to Play Again",game_area.canvas.width/2,game_area.canvas.height-10);
+			ctx.fillText("Press 'RESTART' to Play Again",game_area.canvas.width/2,game_area.canvas.height-10);
 		}
 		else
 		if(text=="PAUSE") {
