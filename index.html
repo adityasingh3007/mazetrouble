@@ -4,7 +4,7 @@
 <title>Maze Trouble</title>
 <link rel="stylesheet" href="./main.css">
 </head>
-<body onLoad="">
+<body>
 	<div>
 		<div class="welcome_screen_container" id="welcome_screen_container" style="display:">
 			<div class="welcome_screen">
@@ -36,9 +36,59 @@
 		</div>
 		
 		<div class="game_container" id="game_container" style="display:none">
-			<div class="canvas_container" >
+			<div class="rules_container" id="rules_container" style="display:block">
+				<div style="color:#1589FF;font-weight:bold;font-size:25px;display:inline">Instructions:</div>
+				<div class="button_container" style="display:inline;float:right;margin:0px">
+						<input type="submit" class="uibutton skip_button" value="SKIP" id="start_skip" onclick="skip_rules();">
+				</div>
+				<div class="rules-list" style="display:block">
+					<ul id="story">
+						<li>One fine day Deep received a parcel. In that parcel, a "Bag" was there along with a note.</li>
+						<li>On that note, a place was mentioned along with the sender's name. The sender was none other than his mentee.</li>
+						<li>He was instructed to come quickly to that place wearing that bag as soon as possible.</li>
+						<li>Deep thought as his mentee was calling him so without cross-checking the bag he followed the instruction. </li>
+						<li>He went to that place. The place was all quiet. "Something isnt good" sensed Deep.</li>
+						<li>Then he sighted a lonely house there. He went inside it. After entering the house Deep cried "Oh! Crap...".</li>
+						<li>Then he realized he was trapped. His mentee was trying to take revenge on him since he awarded him with the lowest rating.</li>
+						<li>The room wasn't just a normal room. Its a kind of maze. Now Deep have to cross that maze. And he can't do that alone.</li>
+						<li>So will you help Deep ?</li>
+						
+					</ul>
+					<ul id="instruction" style="display:none">
+						<li>Deep will walk automatically towards the right side. To give direction (Up or Down) use your mouse cursor.</li>
+						<li>Just make sure while giving direction your mouse should be on the game screen.</li>
+						<li>Surprisingly Deep found that whenever he walks nearby a wall, he gets attracted towards that wall.</li>
+						<li>This is so because walls produce a high magnetic field and due to a magnetic material inside that bag he gets attracted.</li>
+						<li>Due to some mysterious field, he can't even remove that bag.</li>
+						<li>There are 5 levels in this game. Your target is to help Deep to go across the other side of the maze.</li>
+						<li>To complete a level just help Deep to cross to the right side (where he is headed). Once he crosses that, the level will change.</li>
+						<li>Sounds easy, right? But his mentee is too cruel. He had decided some other fate for Deep. </li>
+						<li>You just can't simply cross to the other side. In each level, there will be one Enemy. You have to kill him first.</li>
+						<li>Luckily Deep have his revolver with him. To shoot just give a left click(keeping the mouse on the game screen).</li>
+						<li>Once fired, you cant fire again until that bullet is wasted i.e, goes away without killing.</li>
+						<li>Enemy toughness will increase level by level. For each level, the number of bullets you have to fire to kill an enemy in that particular level is equal to the level number.</li>
+						<li>That means for the level one you have to kill him once. For level two, twice and so on.</li>
+						<li>Kill the enemy and then cross the level. The enemy will shoot one bullet at a time and if the bullet hits Deep, he will die and GAME ENDS.</li>
+						<li>Also don't try to go near the enemy because its too poisonous for Deep. He will die if touched by the enemy.</li>
+						<li>Also if Deep get stuck to the wall. Move up and down and try to bring Deep in between the gap provided. Once he will come there, he will automatically get de-attached from that wall.</li>
+						<li>Deep can also die if he gets squished in between the left side and a wall. So make sure Deep didnt get stuck to a particular wall for a longer period of time.</li>
+						<li>Now its up to you. Help Deep to return to his home safely.</li>
+						<li>So what are you waiting for ? Lets start the game. </li>
+						
+					</ul>
+					<center>
+					<div class="button_container" style="margin:10px 5px 5px 5px">
+						<input type="submit" class="uibutton skip_button" value="NEXT" id="" onclick='javascript:document.getElementById("story").style.display="none";document.getElementById("instruction").style.display="block";this.style.display="none";document.getElementById("start_skip").value="START GAME";'>
+					</div>
+					</center>
+				</div>
+				
+			</div>
+			<div class="canvas_container" id="canvas_container" style="display:none">
 				<canvas id="game_canvas">
 					Your Browser doesnt support Canvas.
+				<img src="./deep.png" id="deep_img" style="display:none;">
+				<img src="./evil.png" id="evil1" style="display:none;">
 				</canvas>
 			</div>
 			<div id="options_container">
