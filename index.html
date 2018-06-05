@@ -36,8 +36,8 @@
 		</div>
 		
 		<div class="game_container" id="game_container" style="display:none">
-			<div class="rules_container" id="rules_container" style="display:block">
-				<div style="color:#1589FF;font-weight:bold;font-size:25px;display:inline">Instructions:</div>
+			<div class="rules_container" id="rules_container" style="display:none">
+				<div style="color:#1589FF;font-weight:bold;font-size:25px;display:inline">Story:</div>
 				<div class="button_container" style="display:inline;float:right;margin:0px">
 						<input type="submit" class="uibutton skip_button" value="SKIP" id="start_skip" onclick="skip_rules();">
 				</div>
@@ -54,7 +54,8 @@
 						<li>So will you help Deep ?</li>
 						
 					</ul>
-					<ul id="instruction" style="display:none">
+				<div style="color:#1589FF;font-weight:bold;font-size:25px;display:inline">Instructions:</div>
+					<ul id="instruction" style="display:">
 						<li>Deep will walk automatically towards the right side. To give direction (Up or Down) use your mouse cursor.</li>
 						<li>Just make sure while giving direction your mouse should be on the game screen.</li>
 						<li>Surprisingly Deep found that whenever he walks nearby a wall, he gets attracted towards that wall.</li>
@@ -74,11 +75,17 @@
 						<li>Deep can also die if he gets squished in between the left side and a wall. So make sure Deep didnt get stuck to a particular wall for a longer period of time.</li>
 						<li>Now its up to you. Help Deep to return to his home safely.</li>
 						<li>So what are you waiting for ? Lets start the game. </li>
-						
 					</ul>
+					
+					<div style="margin:10px 5px 5px 5px">
+						<input type="checkbox" value="Dont_Show_instruction" id="check_instruction">
+						<span style="cursor:pointer;font-weight:bold">
+						<label for="check_instruction" style="cursor:pointer">Don't show this again</label>
+						</span>
+					</div>
 					<center>
 					<div class="button_container" style="margin:10px 5px 5px 5px">
-						<input type="submit" class="uibutton skip_button" value="NEXT" id="" onclick='javascript:document.getElementById("story").style.display="none";document.getElementById("instruction").style.display="block";this.style.display="none";document.getElementById("start_skip").value="START GAME";'>
+						<input type="submit" class="uibutton" value="START GAME" id="" onclick="check_checkbox_start_game();">
 					</div>
 					</center>
 				</div>
@@ -91,7 +98,7 @@
 				<img src="./evil.png" id="evil1" style="display:none;">
 				</canvas>
 			</div>
-			<div id="options_container">
+			<div id="options_container" style="display:none">
 				<table cellspacing="10">
 					<tr>
 						<td style="width:70%;padding-left:20px">
@@ -102,6 +109,11 @@
 						</td>
 					</tr>
 				</table>
+				<center>
+				<div class="clear_data" id="clear_data">
+					<span style="cursor:pointer;" onClick="clear_data();">Clear game data</span>
+				</div>
+				</center>
 			</div>
 		</div>
 	</div>

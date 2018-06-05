@@ -10,6 +10,8 @@ let pause_menu;					//Object to create a pause menu.
 
 let deep_crash_wall=false; 	   	//Boolean to flag whenever Deep crashes with the wall.
 
+let show_rules=1;				//Variable to flag whether to show instruction or not.
+
 //Variables declared to define the speed of respective thing.(Speed w.r.t x-direction)
 let speed_obstacle=2;			
 let speed_deep=2;
@@ -54,7 +56,19 @@ function initiallize() {
 	document.getElementById("welcome_screen_container").style.display="none";
 	document.getElementById("game_container").style.display="block";
 	document.getElementById("player_name_cont").innerHTML=player_name;
-	document.getElementById("options_container").style.display="none";
+	if(localStorage.getItem("Maze_trouble_show_inst")!=null)
+		show_rules=localStorage.getItem("Maze_trouble_show_inst");
+	if(show_rules==1) {
+		document.getElementById("rules_container").style.display="block";
+		document.getElementById("canvas_container").style.display="none";
+		document.getElementById("options_container").style.display="none";
+	}
+	else {
+		document.getElementById("rules_container").style.display="none";
+		document.getElementById("canvas_container").style.display="block";
+		document.getElementById("options_container").style.display="block";
+		start_game();
+	}
 }
 
 //Function to take the user's name.
@@ -65,7 +79,7 @@ function submit_game_data() {
 		document.getElementById("error_container").style.display="none";
 		document.getElementById("user_input_panel").style.display="none";
 		document.getElementById("loading").style.display="block";
-		setTimeout(initiallize,2000);
+		setTimeout(initiallize,700);
 		
 	}
 	else
@@ -311,6 +325,7 @@ function add_enemy() {
 			//Condition to check whether bullet has hit Deep or not.
 			if(((this.shot_x-3)<=deep.x+deep.width)	&& ((this.shot_x+3)>=deep.x)) {
 				if(((this.shot_y+3)<=deep.y+deep.height)&&((this.shot_y-3)>=deep.y)) {
+					document.getElementById("play_pause_restart").disabled=true;
 					deep_death_sound.play();
 					game_area.stop();
 					setTimeout(function() {
@@ -322,6 +337,7 @@ function add_enemy() {
 						ctx.fillRect(0,0,800,300);
 						msg=new add_text("GAME OVER");
 						msg.update();
+						document.getElementById("play_pause_restart").disabled=false;
 						document.getElementById("play_pause_restart").value="RESTART";
 						document.getElementById("play_pause_restart").style.background="red";
 						return;
@@ -346,12 +362,13 @@ function add_enemy() {
 			this.starty=0;
 		this.y+=this.dy;
 		if(this.y<0)
-			this.dy=3;
+			this.dy=3+lvl;
 		if(this.y+this.height>290)
-			this.dy=-3;
+			this.dy=-(3+lvl);
 		//Condition to check whether Deep has collided with enemy or not.
 		if((((this.y+25)>=deep.y)&&((this.y+25)<=deep.y+deep.height))||(this.y+this.height-20>=deep.y&&this.y+this.height-20<=deep.y+deep.height))  {
 			if((this.x+20>=deep.x&&this.x+20<=deep.x+deep.width)||(this.x+this.width>=deep.x&&this.x+this.width<=deep.x+deep.width)) {
+				document.getElementById("play_pause_restart").disabled=true;
 				deep_death_sound.play();
 					game_area.stop();
 					setTimeout(function() {
@@ -363,6 +380,7 @@ function add_enemy() {
 						ctx.fillRect(0,0,800,300);
 						msg=new add_text("GAME OVER");
 						msg.update();
+						document.getElementById("play_pause_restart").disabled=false;
 						document.getElementById("play_pause_restart").value="RESTART";
 						document.getElementById("play_pause_restart").style.background="red";
 						return;
@@ -580,8 +598,23 @@ function takeaction(value) {
 		document.getElementById("play_pause_restart").style.background="#1589FF";
 	}
 	else
-	if(value=="RESTART" || value=="restart") {
-		 window.location.reload();
+	if(value=="RESTART" || value=="restart") {													//Reset all game data.
+		 score.value=0;
+		 lvl=1;
+		 game_over_sound.stop();
+		 game_area.clear();
+		 enemy=false;
+		 deep.x=2;
+		 deep.y=150;
+		 interval=90;	
+		 speed_obstacle=2;
+		 obstacle.splice(0,obstacle.length);
+		 enemy_kill_count=0;
+		 enemy_killed=0;	
+		 deep_shot=false;
+		 start_game();
+		 document.getElementById("play_pause_restart").value="PAUSE";
+		 document.getElementById("play_pause_restart").style.background="#1589FF";
 	}
 }
     
@@ -591,5 +624,24 @@ function skip_rules() {
 	document.getElementById("canvas_container").style.display="block";
 	document.getElementById("options_container").style.display="block";
 	start_game();
-	
 }
+
+//Function to start game and also to check whether user has checked  "dont show the instruction" or not.
+function check_checkbox_start_game() {
+	if(document.getElementById("check_instruction").checked) 
+		show_rules=0;
+	else
+		show_rules=1;
+	localStorage.setItem("Maze_trouble_show_inst",show_rules);
+	skip_rules();
+}
+
+function clear_data() {
+	if(confirm("Are you sure want to delete all game data.?")) { 
+		localStorage.removeItem("Maze_trouble_show_inst");
+		alert("All game data deleted");
+	}
+	else
+		alert("Aborted!!!");
+}
+
