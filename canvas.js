@@ -170,7 +170,7 @@ function show_level() {
 	document.getElementById("play_pause_restart").disabled=true;					//Disable pause button
 	game_area.stop();																//Stop the game from updating the frames.
 	let ctx=game_area.context;
-	ctx.fillStyle = "#80808096";
+	ctx.fillStyle = "rgba(128, 128, 128, 0.58)";
 	ctx.fillRect(0,0,800,300);
 	msg=new add_text("LEVEL");
 	msg.update();																	//Show the screen.
@@ -193,7 +193,7 @@ function winner() {
 	winner_sound.play();
 	game_area.stop();
 	let ctx=game_area.context;
-	ctx.fillStyle = "#80808096";
+	ctx.fillStyle = "rgba(128, 128, 128, 0.58)";
 	ctx.fillRect(0,0,800,300);
 	msg=new add_text("WINNER");
 	msg.update();
@@ -333,7 +333,7 @@ function add_enemy() {
 						game_over_sound.play();
 						game_area.stop();
 						let ctx=game_area.context;
-						ctx.fillStyle = "#80808096";
+						ctx.fillStyle = "rgba(128, 128, 128, 0.58)";
 						ctx.fillRect(0,0,800,300);
 						msg=new add_text("GAME OVER");
 						msg.update();
@@ -376,7 +376,7 @@ function add_enemy() {
 						game_over_sound.play();
 						game_area.stop();
 						let ctx=game_area.context;
-						ctx.fillStyle = "#80808096";
+						ctx.fillStyle = "rgba(128, 128, 128, 0.58)";
 						ctx.fillRect(0,0,800,300);
 						msg=new add_text("GAME OVER");
 						msg.update();
@@ -536,7 +536,7 @@ function updateGameArea() {
 					game_over_sound.play();
 					game_area.stop();
 					let ctx=game_area.context;
-					ctx.fillStyle = "#80808096";
+					ctx.fillStyle = "rgba(128, 128, 128, 0.58)";
 					ctx.fillRect(0,0,800,300);
 					msg=new add_text("GAME OVER");
 					msg.update();
@@ -580,7 +580,7 @@ function takeaction(value) {
 		pause_menu_sound.play();
 		game_area.stop();
 		let ctx=game_area.context;
-		ctx.fillStyle = "#80808096";
+		ctx.fillStyle = "rgba(128, 128, 128, 0.58)";
 		ctx.fillRect(0,0,800,300);
 		pause_menu=new add_text("PAUSE");
 		pause_menu.update();
